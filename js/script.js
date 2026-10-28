@@ -68,6 +68,8 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // ===== Formulário de contato (simulação) =====
+    // Desativado porque o envio agora é feito pelo FormSubmit
+    /*
     const contactForm = document.getElementById('contact-form');
     
     if (contactForm) {
@@ -97,7 +99,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }, 1200);
         });
     }
-
+*/
     // ===== Animação de entrada =====
     const observerOptions = {
         threshold: 0.12,
