@@ -2,7 +2,6 @@
  * ONG APC - Ação pelos Povos e Conservação
  * Script principal do site
  */
-
 document.addEventListener('DOMContentLoaded', function () {
     // ===== Header scroll effect =====
     const header = document.getElementById('header');
@@ -67,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // ===== Formulário de contato (simulação) =====
+    // ===== Formulário de contato =====
     // Desativado porque o envio agora é feito pelo FormSubmit
     /*
     const contactForm = document.getElementById('contact-form');
@@ -75,31 +74,11 @@ document.addEventListener('DOMContentLoaded', function () {
     if (contactForm) {
         contactForm.addEventListener('submit', function (e) {
             e.preventDefault();
-            
-            const name = document.getElementById('name').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const message = document.getElementById('message').value.trim();
-            
-            if (!name || !email || !message) {
-                alert('Por favor, preencha todos os campos.');
-                return;
-            }
-            
-            const submitBtn = contactForm.querySelector('button[type="submit"]');
-            const originalText = submitBtn.textContent;
-            
-            submitBtn.textContent = 'Enviando...';
-            submitBtn.disabled = true;
-            
-            setTimeout(function () {
-                alert('Mensagem enviada com sucesso! Em breve entraremos em contato.\n\n(Nota: este é um formulário de demonstração. Configure um serviço de envio real.)');
-                contactForm.reset();
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
-            }, 1200);
+            // ... código antigo ...
         });
     }
-*/
+    */
+
     // ===== Animação de entrada =====
     const observerOptions = {
         threshold: 0.12,
@@ -146,7 +125,6 @@ document.addEventListener('DOMContentLoaded', function () {
         let current = 0;
         const total = slides.length;
 
-        // Criar dots
         if (dotsContainer) {
             slides.forEach((_, i) => {
                 const dot = document.createElement('button');
@@ -166,5 +144,20 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (prevBtn) prevBtn.addEventListener('click', () => goTo(current - 1));
         if (nextBtn) nextBtn.addEventListener('click', () => goTo(current + 1));
+    }
+
+    // ===== Mensagem de sucesso após envio do formulário =====
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('enviado') === '1') {
+        const msg = document.createElement('div');
+        msg.textContent = 'Sua mensagem foi enviada com sucesso! Em breve entraremos em contato.';
+        msg.style.cssText = 'position:fixed;top:90px;left:50%;transform:translateX(-50%);background:#52CCA3;color:white;padding:16px 28px;border-radius:10px;font-weight:600;box-shadow:0 4px 20px rgba(0,0,0,0.15);z-index:9999;text-align:center;max-width:90%;';
+        document.body.appendChild(msg);
+
+        setTimeout(function () {
+            msg.remove();
+            const cleanUrl = window.location.origin + window.location.pathname + '#contato';
+            window.history.replaceState({}, document.title, cleanUrl);
+        }, 5000);
     }
 });
