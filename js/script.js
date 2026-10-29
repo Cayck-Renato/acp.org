@@ -150,7 +150,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get('enviado') === '1') {
         const msg = document.createElement('div');
-        msg.textContent = 'Sua mensagem foi enviada com sucesso! Em breve entraremos em contato.';
+        msg.textContent = 'Sua mensagem foi enviada com sucesso!';
         msg.style.cssText = 'position:fixed;top:90px;left:50%;transform:translateX(-50%);background:#52CCA3;color:white;padding:16px 28px;border-radius:10px;font-weight:600;box-shadow:0 4px 20px rgba(0,0,0,0.15);z-index:9999;text-align:center;max-width:90%;';
         document.body.appendChild(msg);
 
